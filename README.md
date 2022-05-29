@@ -6,16 +6,22 @@ Proxies Docker registries:
 - docker.io
 - gcr.io
 
-All you need is to `mkcert "*.local"` and place the certificate
-files in [the proper place](services/traefik/certs) according to the filenames dictated by [config.toml](services/traefik/traefik/dynamic/config.toml)
+All you need is to `mkcert "*.local"` and place the certificate files in [the proper place](services/traefik/certs) according to the filenames dictated by [config.toml](services/traefik/traefik/dynamic/config.toml). This is handled by running `make create-certs`
 
 ![Screenshot](screenshot.png)
 
 ## Usage
 
+`make` targets:
+
 ```sh
-docker-compose up
+check-deps                     Checks all required dependencies are installed
+create-certs                   Create required certificate
+start                          Start local docker registries
+stop                           Stop local docker registries
 ```
+
+Run `make start` to start the local registries. It will also take care of creating the certificates and copying them to the required location:
 
 ## k3d
 
