@@ -23,7 +23,15 @@ services:
       - "8443:443"
       - "8080:8080"
     networks:
-      k3d-backend: # only this service need to be exposed
+      k3d-backend:
+        aliases:
+          - traefik
+          - registry-local.local
+          - registry-quayio.local
+          - registry-dockerio.local
+          - registry-gcrio.local
+          - prometheus.local
+      kind:
         aliases:
           - traefik
           - registry-local.local
@@ -231,4 +239,5 @@ networks:
     name: backend
   k3d-backend:
     name: k3d-backend
-
+  kind:
+    name: kind
